@@ -23,7 +23,7 @@ repository               : "venkiphy6/portfolio_website"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.jpg"
+  avatar           : "profile.png"
   name             : "Venkatesh Subramanian"
   pronouns         : # example: "she/her"  
   bio              : "PhD Candidate in Public Policy and Political Economy"

@@ -1,4 +1,4 @@
-{% include base_path %}
+<!-- {% include base_path %}
 
 {% if site.author.github or site.author.bitbucket or site.atom_feed.hide != true %}
 <div class="page__footer-follow">
@@ -22,4 +22,77 @@
 <div class="page__footer-copyright">
   &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}, {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br />
   Site last updated {{ "now" | date: '%Y-%m-%d' }}, <a href="/sitemap/" style="text-transform: uppercase;">{{ site.data.ui-text[site.locale].site_map | default: "Sitemap" }}</a>
+</div> -->
+{% include base_path %}
+
+<style>
+  .page__footer-inner {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+
+  .page__footer-inner.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>
+
+<div class="page__footer-inner">
+  {% if site.author.github or site.author.bitbucket or site.atom_feed.hide != true %}
+  <div class="page__footer-follow">
+    <ul class="social-icons">
+      {% if site.data.ui-text[site.locale].follow_label %}
+      <li><strong>{{ site.data.ui-text[site.locale].follow_label }}</strong></li>
+      {% endif %}
+      {% if site.author.github %}
+      <li><a href="https://github.com/{{ site.author.github }}"><i class="fab fa-github" aria-hidden="true"></i>
+          GitHub</a></li>
+      {% endif %}
+      {% if site.author.bitbucket %}
+      <li><a href="https://bitbucket.org/{{ site.author.bitbucket }}"><i class="fab fa-bitbucket"
+            aria-hidden="true"></i> Bitbucket</a></li>
+      {% endif %}
+      {% if site.atom_feed.hide != true %}
+      <li><a
+          href="{% if site.atom_feed.path %}{{ site.atom_feed.path }}{% else %}{{ base_path }}/feed.xml{% endif %}"><i
+            class="fa fa-fw fa-rss-square" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].feed_label |
+          default: "Feed" }}</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div class="page__footer-copyright">
+    &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}, {{
+    site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="https://jekyllrb.com"
+      rel="nofollow">Jekyll</a> &amp; <a
+      href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>, a fork of <a
+      href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.<br />
+    Site last updated {{ "now" | date: '%Y-%m-%d' }}, <a href="/sitemap/" style="text-transform: uppercase;">{{
+      site.data.ui-text[site.locale].site_map | default: "Sitemap" }}</a>
+  </div>
 </div>
+
+<script>
+  (function () {
+    var footer = document.querySelector('.page__footer-inner');
+    if (!footer) return;
+
+    function checkScroll() {
+      // Trigger when the user is within 100px of the bottom
+      var scrolledToBottom =
+        window.innerHeight + window.scrollY >= document.body.scrollHeight - 100;
+      if (scrolledToBottom) {
+        footer.classList.add('is-visible');
+      } else {
+        footer.classList.remove('is-visible');
+      }
+    }
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    checkScroll(); // Run once on load in case the page is short
+  })();
+</script>

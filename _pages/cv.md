@@ -9,6 +9,12 @@ redirect_from:
 
 {% include base_path %}
 
+<p>
+  <a href="/files/Venkatesh_acadCV.pdf" target="_blank" rel="noopener">
+    Download CV
+  </a>
+</p>
+
 <iframe
   src="/files/Venkatesh_acadCV.pdf"
   width="100%"
